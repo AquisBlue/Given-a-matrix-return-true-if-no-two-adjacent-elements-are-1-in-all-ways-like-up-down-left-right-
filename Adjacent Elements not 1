@@ -1,0 +1,108 @@
+import java.util.Scanner;
+
+public class AdjacentMatrix 
+{
+	public static void main(String[] args) 
+	{
+		Scanner sc = new Scanner(System.in);
+		int rows = sc.nextInt();
+		int cols = sc.nextInt();
+		int arr[][] = new int[rows][cols];
+		for(int i=0;i<rows;i++)
+		{
+			for(int j=0;j<cols;j++)
+			{
+				arr[i][j]=sc.nextInt();
+			}
+		}
+		boolean flag=true;
+		for(int i=0;i<rows;i++)
+		{
+			for(int j=0;j<cols;j++)
+			{
+				if(arr[i][j]==1)
+				{
+					if(i==0)
+					{
+						if(j!=cols-1)
+						{
+							int x = arr[i][j+1];//right
+							int y = arr[i+1][j];//down
+							if(x==1||y==1)
+								flag=false;
+						}
+						else
+						{
+							int x = arr[i][j-1];//left
+							int y = arr[i+1][j];//down
+							if(x==1||y==1)
+								flag=false;
+						}
+					}
+					else if(i==rows-1)
+					{
+						if(j!=cols-1)
+						{
+							int x = arr[i][j+1];//right
+							int y = arr[i-1][j];//up
+							if(x==1||y==1)
+								flag=false;
+						}
+						else
+						{
+							int x = arr[i][j-1];//left
+							int y = arr[i-1][j];//up
+							if(x==1||y==1)
+								flag=false;
+						}
+					}
+					else if(j==0)
+					{
+						if(i!=rows-1)
+						{
+							int x = arr[i][j+1];//right
+							int y = arr[i+1][j];//down
+							if(x==1||y==1)
+								flag=false;
+						}
+						else
+						{
+							int x = arr[i][j+1];//right
+							int y = arr[i-1][j];//up
+							if(x==1||y==1)
+								flag=false;
+						}
+					}
+					else if(j==0)
+					{
+						if(i!=rows-1)
+						{
+							int x = arr[i][j-1];//left
+							int y = arr[i+1][j];//down
+							if(x==1||y==1)
+								flag=false;
+						}
+						else
+						{
+							int x = arr[i][j-1];//left
+							int y = arr[i-1][j];//up
+							if(x==1||y==1)
+								flag=false;
+						}
+					}
+					else
+					{
+						int w = arr[i][j-1];//left
+						int x = arr[i-1][j];//up
+						int y = arr[i][j+1];//right
+						int z = arr[i+1][j];//down
+						if(w==1||x==1||y==1||z==1)
+							flag=false;
+					}
+				}
+			}
+		}
+		System.out.println(flag);
+	}
+
+}
